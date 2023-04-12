@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.arjundev.service.one.service_one">
+     <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="service_one"
         android:name="${applicationName}"
