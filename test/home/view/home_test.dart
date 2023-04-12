@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:service_one/data/provider/vendor/vendor_provider_pod.dart';
-import 'package:service_one/features/home/controller/vendor_service_pod.dart';
 import 'package:service_one/features/home/model/vendor_model.dart';
 import 'package:service_one/features/home/view/home_screen.dart';
 import 'package:service_one/features/home/view/ui_state/home_loaded_view.dart';
