@@ -61,7 +61,6 @@ void main() {
           vendormodel.data.image_url,
           testvendormodel.data.image_url,
         );
-        
       });
     },
   );
