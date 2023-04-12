@@ -16,20 +16,46 @@ class ServiceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      isThreeLine: true,
-      leading: SizedBox.square(
-        dimension: context.safePercentHeight * 8,
-        child: CachedNetworkImage(
-          imageUrl: service.image_url,
-          fit: BoxFit.contain,
-        ).cornerRadius(4),
-      ),
-      title: ServiceTileTitleText(service: service),
-      subtitle: ServiceTileSubTitle(service: service),
-      trailing: ServiceTileTrailingBtn(
-        service: service,
-      ).objectTopRight().box.height(32).width(72).make(),
+    return <Widget>[
+      CachedNetworkImage(
+        imageUrl: service.image_url,
+        fit: BoxFit.contain,
+        alignment: Alignment.topCenter,
+      )
+          .cornerRadius(8)
+          .px24()
+          .box
+          .height(context.safePercentHeight * 8)
+          .make()
+          .flexible(),
+      <Widget>[
+        [
+          ServiceTileTitleText(service: service).expand(flex: 3),
+          Spacer(),
+          ServiceTileTrailingBtn(
+            service: service,
+          )
+              .box
+              .height(24)
+              .width(72)
+              .make()
+              .objectTopRight()
+              .px8()
+              .flexible(flex: 2)
+        ]
+            .hStack(crossAlignment: CrossAxisAlignment.start)
+            .pOnly(top: 2)
+            .flexible(),
+        ServiceTileSubTitle(service: service).objectTopLeft().flexible(),
+      ]
+          .vStack(
+            crossAlignment: CrossAxisAlignment.stretch,
+            alignment: MainAxisAlignment.start,
+          )
+          .objectTopLeft()
+          .expand(flex: 2),
+    ].hStack(
+      crossAlignment: CrossAxisAlignment.start,
     );
   }
 }

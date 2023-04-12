@@ -14,7 +14,8 @@ class ServiceTileTitleText extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ))
           .make()
-          .objectCenterLeft(),
+          .objectTopLeft()
+          .flexible(),
       "${service.rate} SAR per unit"
           .text
           .green500
@@ -27,7 +28,11 @@ class ServiceTileTitleText extends StatelessWidget {
           .pOnly(
             top: 2,
             bottom: 8,
-          ),
-    ].vStack();
+          )
+          .flexible(),
+    ].vStack(
+      crossAlignment: CrossAxisAlignment.start,
+      alignment: MainAxisAlignment.start,
+    );
   }
 }

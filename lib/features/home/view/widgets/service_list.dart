@@ -15,7 +15,9 @@ class ServiceList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemCount: vendorModel.data.services.length,
+      padding: EdgeInsets.zero,
       separatorBuilder: (context, index) {
         return Divider(
           height: 1,

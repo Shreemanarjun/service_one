@@ -19,10 +19,10 @@ class HomeLoaded extends ConsumerWidget {
       child: <Widget>[
         HeaderImage(
           headerImageUrl: vendorModel.data.image_url,
-        ).centered(),
+        ),
         ServiceHeaderTile(
           vendorModel: vendorModel,
-        ).py12(),
+        ).py16(),
         Divider(
           thickness: 3,
           height: 4,
@@ -48,8 +48,8 @@ class HomeLoaded extends ConsumerWidget {
         ),
         Divider(
           height: 1,
-          thickness: 0.5,
-        ),
+          thickness: 1,
+        ).pSymmetric(v: 8),
         PickDateTimeBtn().pOnly(
           left: 14,
           right: 14,
