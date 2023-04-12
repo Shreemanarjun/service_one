@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: release-apk
-          path: build/app/outputs/apk/release/app-release.apk
+          path: build/app/outputs/flutter-apk/app-armeabi-v7a-development-release.apk
       - id: read-version
         uses: NiklasLehnfeld/flutter-version-number-action@main
         with:
