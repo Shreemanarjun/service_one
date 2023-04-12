@@ -10,8 +10,10 @@ dependencies:
   auto_route: ^6.1.0
   cached_network_image: ^3.2.3
   dio: ^5.1.1
+  file: ^6.1.4
   flutter:
     sdk: flutter
+  flutter_cache_manager: ^3.3.0
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^2.3.4

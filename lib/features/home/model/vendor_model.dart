@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+@immutable
 class VendorModel {
   final bool status;
   final String message;
@@ -11,18 +12,6 @@ class VendorModel {
     required this.message,
     required this.data,
   });
-
-  VendorModel copyWith({
-    bool? status,
-    String? message,
-    Category? data,
-  }) {
-    return VendorModel(
-      status: status ?? this.status,
-      message: message ?? this.message,
-      data: data ?? this.data,
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -40,14 +29,8 @@ class VendorModel {
     );
   }
 
-  String toJson() => json.encode(toMap());
-
   factory VendorModel.fromJson(String source) =>
       VendorModel.fromMap(json.decode(source));
-
-  @override
-  String toString() =>
-      'VendorService(status: $status, message: $message, data: $data)';
 
   @override
   bool operator ==(Object other) {
@@ -75,20 +58,6 @@ class Category {
     required this.services,
   });
 
-  Category copyWith({
-    String? category_name,
-    String? description,
-    String? image_url,
-    List<Service>? services,
-  }) {
-    return Category(
-      category_name: category_name ?? this.category_name,
-      description: description ?? this.description,
-      image_url: image_url ?? this.image_url,
-      services: services ?? this.services,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return {
       'category_name': category_name,
@@ -106,16 +75,6 @@ class Category {
       services:
           List<Service>.from(map['services']?.map((x) => Service.fromMap(x))),
     );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Category.fromJson(String source) =>
-      Category.fromMap(json.decode(source));
-
-  @override
-  String toString() {
-    return 'Data(category_name: $category_name, description: $description, image_url: $image_url, services: $services)';
   }
 
   @override
@@ -150,20 +109,6 @@ class Service {
     required this.image_url,
   });
 
-  Service copyWith({
-    String? service_name,
-    int? rate,
-    String? description,
-    String? image_url,
-  }) {
-    return Service(
-      service_name: service_name ?? this.service_name,
-      rate: rate ?? this.rate,
-      description: description ?? this.description,
-      image_url: image_url ?? this.image_url,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return {
       'service_name': service_name,
@@ -180,16 +125,6 @@ class Service {
       description: map['description'] ?? '',
       image_url: map['image_url'] ?? '',
     );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Service.fromJson(String source) =>
-      Service.fromMap(json.decode(source));
-
-  @override
-  String toString() {
-    return 'Service(service_name: $service_name, rate: $rate, description: $description, image_url: $image_url)';
   }
 
   @override

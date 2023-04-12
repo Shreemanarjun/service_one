@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:service_one/app/app.dart';
@@ -20,6 +21,15 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(HomeAppBar), findsOneWidget);
       expect(find.text("Select Service"), findsOneWidget);
+    });
+
+    testWidgets('Finds the app bar and back button', (tester) async {
+      await tester.pumpWidget(ProviderScope(
+        child: const App(),
+      ));
+      await tester.pumpAndSettle();
+      expect(find.byType(HomeAppBar), findsOneWidget);
+      expect(find.byIcon(Icons.keyboard_backspace), findsOneWidget);
     });
   });
 }

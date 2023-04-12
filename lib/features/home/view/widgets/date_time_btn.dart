@@ -13,7 +13,7 @@ class PickDateTimeBtn extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.black,
           minimumSize: Size.fromHeight(44)),
-      onPressed: () {},
+      onPressed: null,
       child: "Proceed to Pick Date and Time"
           .text
           .textStyle(TextStyle(

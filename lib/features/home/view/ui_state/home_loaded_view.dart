@@ -15,6 +15,7 @@ class HomeLoaded extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return RefreshIndicator(
+      semanticsLabel: 'Refresh',
       onRefresh: () => ref.refresh(vendorServicePod.future),
       child: <Widget>[
         HeaderImage(
