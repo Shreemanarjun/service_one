@@ -21,7 +21,8 @@ class HeaderImage extends ConsumerWidget {
         imageProvider: imageProvider,
       ),
       progressIndicatorBuilder: (context, url, downloadProgress) =>
-          CircularProgressIndicator.adaptive(value: downloadProgress.progress),
+          CircularProgressIndicator.adaptive(value: downloadProgress.progress)
+              .centered(),
       errorWidget: (context, url, error) => Icon(Icons.error),
     );
   }
