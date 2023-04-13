@@ -18,8 +18,7 @@ void main() {
   group('dio test', () {
     test('dio instance', () {
       final container = makeProviderContainer();
-      expect(container.read(dioPod),
-          isA<Dio>());
+      expect(container.read(dioPod), isA<Dio>());
     });
     test('dio base url test', () {
       final container = makeProviderContainer();
