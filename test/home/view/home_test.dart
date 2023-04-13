@@ -10,24 +10,43 @@ import 'package:service_one/features/home/model/vendor_model.dart';
 import 'package:service_one/features/home/view/home_screen.dart';
 import 'package:service_one/features/home/view/ui_state/home_loaded_view.dart';
 import 'package:service_one/features/home/view/ui_state/home_loading_view.dart';
+import 'package:service_one/features/home/view/widgets/date_time_btn.dart';
 import 'package:service_one/features/home/view/widgets/header_image.dart';
 import 'package:service_one/features/home/view/widgets/service_tile_trailing_btn.dart';
 
 import '../../helpers/helpers.dart';
 import '../controller/home_unit_test.dart';
 
-class MockBaseCacheManager extends Mock implements BaseCacheManager {
+class DefaultErrorMockCacheManager extends Mock implements DefaultCacheManager {
   static const fileSystem = LocalFileSystem();
+
   @override
-  Stream<FileResponse> getFileStream(
+  Stream<FileResponse> getImageFile(
     String url, {
     String? key,
     Map<String, String>? headers,
-    bool? withProgress,
+    bool withProgress = false,
+    int? maxHeight,
+    int? maxWidth,
   }) async* {
-    print(url);
+    throw "Error";
+  }
+}
+
+class DefaultMockCacheManager extends Mock implements DefaultCacheManager {
+  static const fileSystem = LocalFileSystem();
+
+  @override
+  Stream<FileResponse> getImageFile(
+    String url, {
+    String? key,
+    Map<String, String>? headers,
+    bool withProgress = false,
+    int? maxHeight,
+    int? maxWidth,
+  }) async* {
     yield FileInfo(
-      fileSystem.file('test/assets/logo.jpg'), // Return your image file path
+      fileSystem.file('./test/assets/logo.jpg'), // Return your image file path
       FileSource.Cache,
       DateTime(2050),
       url,
@@ -65,8 +84,9 @@ final vendorjson = """{
     }
 }""";
 
-void main() {
+Future<void> main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
+
   group('HomeView', () {
     testWidgets("render HomeLoading Page", (tester) async {
       final mockvendorprovider = MockVendorProvider();
@@ -77,9 +97,12 @@ void main() {
           data: VendorModel.fromJson(vendorjson).toMap(),
         ),
       );
+      final container = makeProviderContainer(
+        overrides: [vendorProviderPod.overrideWithValue(mockvendorprovider)],
+      );
       await tester.pumpApp(
         ProviderScope(
-          overrides: [vendorProviderPod.overrideWithValue(mockvendorprovider)],
+          parent: container,
           child: HomeScreen(),
         ),
       );
@@ -96,9 +119,12 @@ void main() {
           data: VendorModel.fromJson(vendorjson).toMap(),
         ),
       );
+      final container = makeProviderContainer(
+        overrides: [vendorProviderPod.overrideWithValue(mockvendorprovider)],
+      );
       await tester.pumpApp(
         ProviderScope(
-          overrides: [vendorProviderPod.overrideWithValue(mockvendorprovider)],
+          parent: container,
           child: HomeScreen(),
         ),
       );
@@ -108,6 +134,7 @@ void main() {
       expect(find.byType(HomeLoaded), findsOneWidget);
       expect(find.byType(RefreshIndicator), findsOneWidget);
       expect(find.byType(HeaderImage), findsOneWidget);
+      expect(find.byType(PickDateTimeBtn), findsOneWidget);
       expect(find.byType(ServiceTileTrailingBtn), findsAtLeastNWidgets(3));
     });
     testWidgets("render Service Tile trailing button", (tester) async {
@@ -119,9 +146,12 @@ void main() {
           data: VendorModel.fromJson(vendorjson).toMap(),
         ),
       );
+      final container = makeProviderContainer(
+        overrides: [vendorProviderPod.overrideWithValue(mockvendorprovider)],
+      );
       await tester.pumpApp(
         ProviderScope(
-          overrides: [vendorProviderPod.overrideWithValue(mockvendorprovider)],
+          parent: container,
           child: HomeScreen(),
         ),
       );

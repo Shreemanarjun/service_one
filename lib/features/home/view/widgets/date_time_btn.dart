@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:service_one/features/home/controller/selected_service_list_pod.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class PickDateTimeBtn extends ConsumerWidget {
@@ -14,7 +15,9 @@ class PickDateTimeBtn extends ConsumerWidget {
           elevation: 0,
           backgroundColor: Colors.black,
           minimumSize: Size.fromHeight(44)),
-      onPressed: () {},
+      onPressed: () {
+        ref.read(pickDateTimeBtnPressedPod.notifier).update((state) => !state);
+      },
       child: "Proceed to Pick Date and Time"
           .text
           .textStyle(TextStyle(

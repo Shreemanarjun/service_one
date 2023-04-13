@@ -18,6 +18,7 @@ class HeaderImage extends ConsumerWidget {
       imageUrl: headerImageUrl,
       cacheManager: ref.watch(defaultCacheManagerPod),
       imageBuilder: (context, imageProvider) => SuccessLogoImage(
+        key: ValueKey('success'),
         imageProvider: imageProvider,
       ),
       progressIndicatorBuilder: (context, url, downloadProgress) =>

@@ -8,18 +8,18 @@ import 'package:service_one/features/home/controller/vendor_service_pod.dart';
 import 'package:service_one/features/home/model/vendor_model.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../helpers/helpers.dart';
+
 class MockVendorProvider extends Mock implements IVendorProvider {}
 
 void main() {
   group("SelectedServiceNotifier", () {
     test('initial state should be empty', () {
-      final container = ProviderContainer();
-      addTearDown(() => container);
+      final container = makeProviderContainer();
       expect(container.read(selectedListServicePod), equals([]));
     });
     test('add a new service', () {
-      final container = ProviderContainer();
-      addTearDown(() => container);
+      final container = makeProviderContainer();
       expect(container.read(selectedListServicePod), equals([]));
       final service = Service(
         service_name: 'AC Repair',
@@ -56,8 +56,7 @@ void main() {
       expect(container.read(selectedListServicePod).length, equals(1));
     });
     test('remove a service', () {
-      final container = ProviderContainer();
-      addTearDown(() => container);
+      final container = makeProviderContainer();
       expect(container.read(selectedListServicePod), equals([]));
       final service = Service(
         service_name: 'AC Repair',
@@ -73,8 +72,7 @@ void main() {
       expect(container.read(selectedListServicePod).length, equals(0));
     });
     test('toggle a service to remove', () {
-      final container = ProviderContainer();
-      addTearDown(() => container);
+      final container = makeProviderContainer();
       expect(container.read(selectedListServicePod), equals([]));
       final service = Service(
         service_name: 'AC Repair',
@@ -90,8 +88,7 @@ void main() {
       expect(container.read(selectedListServicePod).length, equals(0));
     });
     test('toggle a service to add', () {
-      final container = ProviderContainer();
-      addTearDown(() => container);
+      final container = makeProviderContainer();
       expect(container.read(selectedListServicePod), equals([]));
       final service = Service(
         service_name: 'AC Repair',
@@ -106,8 +103,7 @@ void main() {
   });
 
   test("is Service Add check on empty service", () {
-    final container = ProviderContainer();
-    addTearDown(() => container);
+    final container = makeProviderContainer();
     expect(container.read(selectedListServicePod), equals([]));
     final service = Service(
       service_name: 'AC Repair',
@@ -121,8 +117,7 @@ void main() {
     expect(container.read(isServiceAddedPod(service)), equals(true));
   });
   test("is Service Add check on filled service", () {
-    final container = ProviderContainer();
-    addTearDown(() => container);
+    final container = makeProviderContainer();
     expect(container.read(selectedListServicePod), equals([]));
     final service = Service(
       service_name: 'AC Repair',
@@ -171,10 +166,9 @@ void main() {
         data: vendormodel.toMap(),
       ),
     );
-    final container = ProviderContainer(overrides: [
+    final container = makeProviderContainer(overrides: [
       vendorProviderPod.overrideWithValue(mockvendorprovider),
     ]);
-    addTearDown(() => container);
     await container.read(vendorServicePod.future);
     expect(
         container.read(vendorServicePod),
@@ -183,9 +177,8 @@ void main() {
   });
 
   test("vendorServicepod api failure", () async {
-    final container = ProviderContainer(
+    final container = makeProviderContainer(
         overrides: [vendorServicePod.overrideWith((ref) => throw "error")]);
-    addTearDown(() => container);
 
     await expectLater(
       await container.read(vendorServicePod),

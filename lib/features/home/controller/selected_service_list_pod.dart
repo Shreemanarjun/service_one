@@ -14,3 +14,7 @@ final isServiceAddedPod =
     ),
   );
 });
+
+final pickDateTimeBtnPressedPod = StateProvider.autoDispose<bool>((ref) {
+  return false;
+});

@@ -2,19 +2,13 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:service_one/shared/dio_client/dio_client_pod.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
 
-void main() {
-  ProviderContainer makeProviderContainer(
-      {List<Override> overrides = const []}) {
-    final container = ProviderContainer(overrides: overrides);
-    addTearDown(container.dispose);
-    return container;
-  }
+import '../helpers/helpers.dart';
 
+void main() {
   group('dio test', () {
     test('dio instance', () {
       final container = makeProviderContainer();
