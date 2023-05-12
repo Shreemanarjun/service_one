@@ -269,26 +269,26 @@ packages:
     dependency: "direct dev"
     description:
       name: custom_lint
-      sha256: "80ccf10b30d4f1d0b40bd6d276a86d72266569c0a7542f1b839daf2fd05c16a5"
+      sha256: e87176016465263daf10c209df1f50a52e9e46e7612fab7462da1e6d984638f6
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.3"
+    version: "0.3.4"
   custom_lint_builder:
     dependency: transitive
     description:
       name: custom_lint_builder
-      sha256: "0f77cd4603fff002284c6131d85c9a40772bbd285d09d0556aafd520e67d1916"
+      sha256: "6b5e20a249f2f7f15d098f802fe736b72cac14cddccdfcb46027e1b401deec9f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.3"
+    version: "0.3.4"
   custom_lint_core:
     dependency: transitive
     description:
       name: custom_lint_core
-      sha256: "83bf91d1e4ef2a893bd9a7cefaede25a4e93b47779f71a2fed33d9122e3f02c9"
+      sha256: f42f688bc26bdf4c081e011ba27a00439f17c20d9aeca4312f8022e577f8363f
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.3"
+    version: "0.3.4"
   dart_style:
     dependency: transitive
     description:
